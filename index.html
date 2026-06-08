@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yugendran Rajaendran — Biomedical AI Portfolio</title>
+  <meta name="description" content="Portfolio of Yugendran Rajaendran, Stanford biomedical data science researcher focused on multimodal clinical AI, computational oncology, and responsible healthcare systems." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=zodiak@400,700&display=swap" rel="stylesheet" />
+  <style>
+    /* Art direction: biomedical AI portfolio → rigorous, precise, editorial-tech
+       Palette: cool-neutral with restrained teal accent
+       Typography: Zodiak + Satoshi for research gravitas with modern clarity
+       Density: balanced */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+
+      --color-bg: #f5f7f8;
+      --color-surface: #fbfcfc;
+      --color-surface-2: #ffffff;
+      --color-surface-offset: #edf2f3;
+      --color-border: rgba(20, 38, 46, 0.12);
+      --color-divider: rgba(20, 38, 46, 0.08);
+      --color-text: #14262e;
+      --color-text-muted: #56676d;
+      --color-text-faint: #8c999e;
+      --color-primary: #0f6c73;
+      --color-primary-hover: #0b565c;
+      --color-primary-soft: rgba(15, 108, 115, 0.1);
+      --color-accent: #5b7cfa;
+      --shadow-sm: 0 2px 8px rgba(20, 38, 46, 0.06);
+      --shadow-md: 0 16px 40px rgba(20, 38, 46, 0.1);
+      --radius-sm: 0.5rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --content-default: 1100px;
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --font-body: 'Satoshi', 'Inter', sans-serif;
+      --font-display: 'Zodiak', Georgia, serif;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #0d1417;
+      --color-surface: #101a1e;
+      --color-surface-2: #142126;
+      --color-surface-offset: #1a2a30;
+      --color-border: rgba(214, 230, 234, 0.12);
+      --color-divider: rgba(214, 230, 234, 0.08);
+      --color-text: #e6eef0;
+      --color-text-muted: #9cb0b6;
+      --color-text-faint: #6d7f85;
+      --color-primary: #59b6bc;
+      --color-primary-hover: #7dcfd3;
+      --color-primary-soft: rgba(89, 182, 188, 0.12);
+      --color-accent: #86a2ff;
+      --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: none;
+      text-size-adjust: none;
+      scroll-padding-top: 5rem;
+    }
+
+    body {
+      min-height: 100dvh;
+      background: radial-gradient(circle at top right, rgba(89, 182, 188, 0.1), transparent 30%), var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: 1.65;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    a, button { transition: color var(--transition-interactive), background var(--transition-interactive), border-color var(--transition-interactive), transform var(--transition-interactive); }
+    button { font: inherit; border: 0; background: none; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+    .skip-link {
+      position: absolute; left: var(--space-4); top: -3rem; background: var(--color-primary);
+      color: #081012; padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); z-index: 1000;
+    }
+    .skip-link:focus { top: var(--space-4); }
+
+    .container { width: min(calc(100% - 2rem), var(--content-default)); margin: 0 auto; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(18px);
+      background: rgba(13, 20, 23, 0.78); border-bottom: 1px solid var(--color-divider);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; min-height: 4.75rem; gap: var(--space-4);
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .brand-mark {
+      width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 1px solid var(--color-border);
+      display: grid; place-items: center; background: var(--color-surface);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: var(--space-6); font-size: var(--text-sm); color: var(--color-text-muted);
+    }
+    .nav-links a:hover { color: var(--color-primary); }
+    .theme-toggle {
+      width: 2.75rem; height: 2.75rem; border-radius: 999px; border: 1px solid var(--color-border); color: var(--color-text);
+      background: var(--color-surface);
+      display: grid; place-items: center;
+    }
+
+    main section { padding: clamp(var(--space-12), 10vw, var(--space-24)) 0; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-6);
+      color: var(--color-primary); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.16em; font-weight: 700;
+    }
+    .eyebrow::before {
+      content: ""; width: 1.75rem; height: 1px; background: currentColor;
+    }
+
+    .hero {
+      min-height: calc(100dvh - 4.75rem); display: grid; align-items: center;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-12); align-items: center;
+    }
+    .hero-copy h1 {
+      font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.8rem); line-height: 0.92; letter-spacing: -0.04em; max-width: 10ch;
+    }
+    .hero-copy h1 span { color: var(--color-primary); }
+    .hero-summary {
+      margin-top: var(--space-6); max-width: 62ch; color: var(--color-text-muted);
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6);
+    }
+    .pill {
+      min-height: 2.75rem; display: inline-flex; align-items: center; padding: 0 var(--space-4); border-radius: 999px;
+      border: 1px solid var(--color-border); background: var(--color-surface); font-size: var(--text-sm); color: var(--color-text-muted);
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8);
+    }
+    .btn {
+      min-height: 3rem; display: inline-flex; align-items: center; justify-content: center; padding: 0 var(--space-5);
+      border-radius: 999px; font-size: var(--text-sm); font-weight: 700; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--color-primary); color: #081012; }
+    .btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-2px); }
+    .btn-secondary { border-color: var(--color-border); background: var(--color-surface); color: var(--color-text); }
+    .btn-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+    .hero-panel {
+      background: linear-gradient(180deg, var(--color-surface), var(--color-surface-2));
+      border: 1px solid var(--color-border); border-radius: var(--radius-xl); box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .panel-head {
+      display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--color-divider); font-size: var(--text-xs); color: var(--color-text-faint); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .panel-dots { display: inline-flex; gap: var(--space-2); }
+    .panel-dots span { width: 0.65rem; height: 0.65rem; border-radius: 50%; background: var(--color-text-faint); opacity: 0.5; }
+    .panel-body { padding: var(--space-6); }
+    .panel-grid { display: grid; gap: var(--space-4); }
+    .info-block {
+      padding: var(--space-4); border-radius: var(--radius-lg); background: var(--color-surface-offset); border: 1px solid var(--color-divider);
+    }
+    .info-label { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-faint); margin-bottom: var(--space-2); }
+    .info-value { font-size: var(--text-sm); color: var(--color-text); }
+
+    .section-heading {
+      display: grid; gap: var(--space-4); margin-bottom: var(--space-10);
+    }
+    .section-heading h2 {
+      font-family: var(--font-display); font-size: var(--text-2xl); line-height: 1; letter-spacing: -0.04em;
+    }
+    .section-heading p { color: var(--color-text-muted); max-width: 60ch; }
+
+    .metrics {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-top: var(--space-8);
+    }
+    .metric {
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5);
+    }
+    .metric strong { display: block; font-size: var(--text-xl); color: var(--color-primary); }
+    .metric span { display: block; margin-top: var(--space-2); font-size: var(--text-sm); color: var(--color-text-muted); }
+
+    .about-grid, .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8);
+    }
+    .card {
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .card h3 { font-size: var(--text-lg); margin-bottom: var(--space-4); }
+    .card p { color: var(--color-text-muted); }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+    .tag {
+      padding: 0.65rem 0.9rem; border-radius: 999px; font-size: var(--text-sm);
+      background: var(--color-primary-soft); color: var(--color-primary); border: 1px solid transparent;
+    }
+
+    .projects-grid, .timeline {
+      display: grid; gap: var(--space-4);
+    }
+    .project-card, .timeline-item {
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-6);
+      display: grid; gap: var(--space-4);
+    }
+    .project-top, .timeline-top {
+      display: flex; justify-content: space-between; gap: var(--space-4); align-items: start;
+    }
+    .project-title, .timeline-title { font-size: var(--text-lg); font-weight: 700; }
+    .project-meta, .timeline-date { color: var(--color-text-faint); font-size: var(--text-sm); }
+    .project-card p, .timeline-item p { color: var(--color-text-muted); }
+
+    .project-card ul, .timeline-item ul { list-style: none; display: grid; gap: var(--space-3); }
+    .project-card li, .timeline-item li {
+      position: relative; padding-left: var(--space-5); color: var(--color-text-muted);
+    }
+    .project-card li::before, .timeline-item li::before {
+      content: ""; position: absolute; left: 0; top: 0.72rem; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--color-primary);
+    }
+
+    .two-column {
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: var(--space-8);
+    }
+
+    .edu-list { display: grid; gap: var(--space-4); }
+    .edu-item { padding-bottom: var(--space-4); border-bottom: 1px solid var(--color-divider); }
+    .edu-item:last-child { border-bottom: 0; padding-bottom: 0; }
+    .edu-item strong { display: block; font-size: var(--text-base); }
+    .edu-item span, .edu-item p { color: var(--color-text-muted); font-size: var(--text-sm); }
+
+    .contact-links { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-6); }
+    .contact-link {
+      min-height: 3rem; display: inline-flex; align-items: center; padding: 0 var(--space-4); border-radius: 999px;
+      border: 1px solid var(--color-border); background: var(--color-surface-2); font-size: var(--text-sm);
+    }
+    .contact-link:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+    footer {
+      padding: var(--space-8) 0 var(--space-12); color: var(--color-text-faint); font-size: var(--text-sm);
+      border-top: 1px solid var(--color-divider);
+    }
+
+    [data-reveal] {
+      opacity: 0; transform: translateY(24px); transition: opacity 600ms ease, transform 600ms ease;
+    }
+    [data-reveal].visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 960px) {
+      .hero-grid, .about-grid, .contact-grid, .two-column { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      .nav { padding: var(--space-3) 0; align-items: start; flex-direction: column; }
+      .nav-links { flex-wrap: wrap; gap: var(--space-4); }
+      .hero-copy h1 { max-width: 12ch; }
+      .metrics { grid-template-columns: 1fr; }
+      .panel-body, .project-card, .timeline-item, .card { padding: var(--space-5); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Yugendran Rajaendran home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M4 5h6l2 4 2-4h6l-6.5 14h-3z"></path>
+          </svg>
+        </span>
+        <span>Yugendran Rajaendran</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy" data-reveal>
+          <div class="eyebrow">Biomedical AI · Computational Oncology · Translational Research</div>
+          <h1>Building clinically grounded <span>AI systems</span> for medicine.</h1>
+          <p class="hero-summary">
+            Yugendran Rajaendran is a Stanford researcher in Biomedical Data Science and Bioengineering working across multimodal clinical AI, computational oncology, medical ontologies, and responsible healthcare machine learning.
+          </p>
+          <div class="hero-meta" aria-label="Key profile details">
+            <span class="pill">Stanford University</span>
+            <span class="pill">M.S. Biomedical Data Science</span>
+            <span class="pill">B.S. Bioengineering, 2024</span>
+            <span class="pill">Oxford study abroad alum</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View selected work</a>
+            <a class="btn btn-secondary" href="mailto:yugendranyadhav@gmail.com">Email Yugendran</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" data-reveal aria-label="Profile summary panel">
+          <div class="panel-head">
+            <span>Research profile</span>
+            <span class="panel-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          </div>
+          <div class="panel-body panel-grid">
+            <div class="info-block">
+              <div class="info-label">Current focus</div>
+              <div class="info-value">Multimodal clinical models using EHR, imaging, and clinical notes for prediction and decision support.</div>
+            </div>
+            <div class="info-block">
+              <div class="info-label">Research domains</div>
+              <div class="info-value">Biomedical data science, computational oncology, medical AI, stem cell and organoid research.</div>
+            </div>
+            <div class="info-block">
+              <div class="info-label">Languages</div>
+              <div class="info-value">English, Tamil, Malay, German.</div>
+            </div>
+            <div class="info-block">
+              <div class="info-label">Technical stack</div>
+              <div class="info-value">Python, R, C, C++, MATLAB, PyTorch, TensorFlow, Jupyter, Transformers, LLMs, Linux.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div class="eyebrow">About</div>
+          <h2>Interdisciplinary training across engineering, medicine, and data science.</h2>
+          <p>
+            This portfolio is tailored around Yugendran’s strongest story: combining rigorous bioengineering training with machine learning for clinically meaningful research, especially in oncology, diagnostic modeling, and patient-centered systems.
+          </p>
+        </div>
+
+        <div class="metrics" data-reveal>
+          <div class="metric"><strong>2</strong><span>Stanford degrees in Bioengineering and Biomedical Data Science.</span></div>
+          <div class="metric"><strong>5+</strong><span>Research and technical project themes spanning oncology, multimodal AI, and diagnostics.</span></div>
+          <div class="metric"><strong>3</strong><span>Major distinctions including Rhodes finalist and Bio-X fellowship recognition.</span></div>
+          <div class="metric"><strong>4</strong><span>Working languages across research, collaboration, and international study.</span></div>
+        </div>
+
+        <div class="about-grid" style="margin-top: var(--space-8);">
+          <article class="card" data-reveal>
+            <h3>Research identity</h3>
+            <p>
+              Yugendran’s work sits at the intersection of clinical data systems and translational science, with interests in reproducible AI infrastructure, ethical model development, and computational methods that support precision medicine.
+            </p>
+            <div class="tag-list" aria-label="Research areas">
+              <span class="tag">Multimodal clinical AI</span>
+              <span class="tag">Computational oncology</span>
+              <span class="tag">Responsible AI</span>
+              <span class="tag">Medical ontologies</span>
+              <span class="tag">Diagnostic modeling</span>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <h3>Technical foundation</h3>
+            <p>
+              The technical profile combines machine learning frameworks with systems-level programming and quantitative training, making it strong for research engineer, biomedical AI, and translational data science roles.
+            </p>
+            <div class="tag-list" aria-label="Technical skills">
+              <span class="tag">Python</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">Transformers</span>
+              <span class="tag">R</span>
+              <span class="tag">C / C++</span>
+              <span class="tag">MATLAB</span>
+              <span class="tag">Linux</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container two-column">
+        <div>
+          <div class="section-heading" data-reveal>
+            <div class="eyebrow">Experience</div>
+            <h2>Research and clinical AI work grounded in real biomedical problems.</h2>
+            <p>
+              The experience section emphasizes substantive research environments rather than generic “creator” content, making the site better aligned with academic labs, fellowships, and healthcare AI roles.
+            </p>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item" data-reveal>
+              <div class="timeline-top">
+                <div>
+                  <div class="timeline-title">Stanford School of Medicine & Engineering</div>
+                  <div class="project-meta">Department of Biomedical Data Science & Center for Artificial Intelligence in Medicine & Imaging</div>
+                </div>
+                <div class="timeline-date">Jan 2025 – Present</div>
+              </div>
+              <ul>
+                <li>Contributes to reproducible and ethically grounded AI pipelines for clinical research datasets with attention to transparent validation and regulatory alignment.</li>
+                <li>Works on multimodal data integration across EHR, imaging, and clinical notes to support predictive models for diagnosis and decision-making.</li>
+                <li>Developed computational pipelines for identifying shared high-affinity neoantigenic peptides across lung cancer subtypes using multi-omics data.</li>
+                <li>Designed a semantic patient information system using medical ontologies to improve accessibility and decision support in cancer care settings.</li>
+                <li>Collaborates across engineering, radiology, immunology, and ethics teams while maintaining focus on confidentiality and equity in healthcare AI.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item" data-reveal>
+              <div class="timeline-top">
+                <div>
+                  <div class="timeline-title">Wu Research Group</div>
+                  <div class="project-meta">Researcher</div>
+                </div>
+                <div class="timeline-date">Jun 2022 – Present</div>
+              </div>
+              <ul>
+                <li>Studies conjunctival squamous cell carcinoma using organoid models to investigate progression and treatment strategies.</li>
+                <li>Worked with Wu Lab and Weissman Lab at the interface of stem cell biology, tissue engineering, ophthalmology, and reconstructive medicine.</li>
+                <li>Used induced pluripotent stem cells to generate limbal epithelial cells and explored immune engineering strategies targeting CSCC.</li>
+                <li>Performed invasion experiments, advanced imaging workflows, and treatment-response analysis using viability assays and molecular markers.</li>
+                <li>Maintained strong scientific rigor through validation, statistical evaluation, and careful experimental analysis.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <aside class="card" data-reveal>
+          <h3>Selected distinctions</h3>
+          <div class="edu-list">
+            <div class="edu-item">
+              <strong>Rhodes Scholarship Finalist</strong>
+              <span>2024 and 2025</span>
+            </div>
+            <div class="edu-item">
+              <strong>Khazanah Global Scholar</strong>
+              <p>Fully funded scholarship from the Malaysia sovereign wealth fund for undergraduate study.</p>
+            </div>
+            <div class="edu-item">
+              <strong>Bio-X Undergraduate Fellow</strong>
+              <p>Recognition for interdisciplinary research in bioengineering and biomedical science.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <div class="eyebrow">Selected work</div>
+          <h2>Projects that connect machine learning to diagnosis, retrieval, and personalized care.</h2>
+          <p>
+            Instead of generic portfolio cards, these project summaries are drawn directly from the CV and framed around biomedical impact and technical focus.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <div>
+                <div class="project-title">Multimodal Clinical Case Retrieval</div>
+                <div class="project-meta">Clinical AI · Retrieval systems</div>
+              </div>
+              <span class="pill">Disease prediction</span>
+            </div>
+            <p>
+              Development of a multimodal clinical case retrieval system to support disease prediction and diagnostic reasoning using heterogeneous clinical data sources.
+            </p>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <div>
+                <div class="project-title">Neoantigen Landscape of Lung Cancer</div>
+                <div class="project-meta">Computational oncology · Multi-omics</div>
+              </div>
+              <span class="pill">Precision medicine</span>
+            </div>
+            <p>
+              Computational mapping of shared and high-affinity neoantigenic peptides across lung cancer subtypes to support personalized immunotherapy development.
+            </p>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <div>
+                <div class="project-title">Intracranial Hemorrhage Detection</div>
+                <div class="project-meta">Deep learning · Medical imaging</div>
+              </div>
+              <span class="pill">TBI classification</span>
+            </div>
+            <p>
+              Deep learning models for traumatic brain injury screening through intracranial hemorrhage detection and classification in imaging data.
+            </p>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <div>
+                <div class="project-title">Cell-free Uric Acid Detection</div>
+                <div class="project-meta">Bioengineering · Diagnostics</div>
+              </div>
+              <span class="pill">Congenital screening</span>
+            </div>
+            <p>
+              Engineering of a cell-free uric acid detection system with application to congenital heart disease screening and low-cost diagnostic workflows.
+            </p>
+          </article>
+
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <div>
+                <div class="project-title">Ontology-Based Patient Information System</div>
+                <div class="project-meta">Knowledge systems · Cancer care</div>
+              </div>
+              <span class="pill">Patient empowerment</span>
+            </div>
+            <p>
+              Patient-centered medical information architecture using ontologies to improve access, interpretation, and support for oncology care decisions.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-heading" data-reveal>
+            <div class="eyebrow">Education</div>
+            <h2>Stanford depth with global academic exposure.</h2>
+            <p>
+              The educational story is strongest when presented as focused training for biomedical AI rather than a long course catalog, so this version highlights the most important institutions and themes.
+            </p>
+          </div>
+          <div class="card" data-reveal>
+            <div class="edu-list">
+              <div class="edu-item">
+                <strong>Stanford University</strong>
+                <span>Master of Science in Biomedical Data Science, in progress</span>
+                <p>Bachelor of Science in Bioengineering, 2024.</p>
+              </div>
+              <div class="edu-item">
+                <strong>Core academic themes</strong>
+                <p>Bioinformatics, computational biology, AI, machine learning, computer vision, algorithms, optimization, probability, and statistical inference.</p>
+              </div>
+              <div class="edu-item">
+                <strong>Teaching and research</strong>
+                <p>BIOE 123, BIOE 80, BIO 43, plus graduate research assistant work across the School of Medicine and School of Engineering.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-reveal>
+          <h3>Oxford experience</h3>
+          <div class="edu-list">
+            <div class="edu-item">
+              <strong>University of Oxford</strong>
+              <span>Magdalen College, fully funded BOSP study abroad, Dec 2022</span>
+            </div>
+            <div class="edu-item">
+              <strong>Academic focus</strong>
+              <p>Tutorial in Medicine covering cancer biology and oncology, plus AI and Society and Negotiation.</p>
+            </div>
+            <div class="edu-item">
+              <strong>Community</strong>
+              <p>Magdalen Rowing, Archery, and Oxford Engineers Without Borders.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="section-heading" data-reveal style="margin-bottom: 0;">
+          <div class="eyebrow">Contact</div>
+          <h2>Open to research, technical, and translational healthcare conversations.</h2>
+          <p>
+            This contact section is intentionally lean: direct email, academic email, and a clear statement of professional direction instead of a broad social-media grid.
+          </p>
+        </div>
+        <div class="card" data-reveal>
+          <h3>Reach out</h3>
+          <p>
+            Best fit for research collaborations, biomedical AI roles, computational oncology work, graduate opportunities, and interdisciplinary healthcare technology projects.
+          </p>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:yugendranyadhav@gmail.com">yugendranyadhav@gmail.com</a>
+            <a class="contact-link" href="mailto:yugen@stanford.edu">yugen@stanford.edu</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Tailored portfolio for Yugendran Rajaendran — biomedical data science, computational oncology, and responsible clinical AI.
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+
+      const updateToggle = () => {
+        toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        toggle.innerHTML = theme === 'dark'
+          ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>'
+          : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>';
+      };
+      updateToggle();
+      toggle.addEventListener('click', function () {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        updateToggle();
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+
+      document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>
